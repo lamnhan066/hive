@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:html';
-import 'dart:indexed_db';
-import 'dart:js' as js;
+import 'dart:js_interop';
+
 import 'package:hive/hive.dart';
+import 'package:hive/src/backend/js/utils.dart';
 import 'package:hive/src/backend/js/web_worker/web_worker_interface.dart';
+import 'package:web/web.dart';
 
 import '../../storage_backend.dart';
 import 'storage_backend_web_worker.dart';
@@ -22,9 +23,7 @@ class BackendManagerWebWorker implements BackendManagerInterface {
 
   BackendManagerWebWorker(this.backendPreference);
 
-  IdbFactory? get indexedDB => js.context.hasProperty('window')
-      ? window.indexedDB
-      : WorkerGlobalScope.instance.indexedDB;
+  IDBFactory? get indexedDB => window.indexedDB;
 
   @override
   Future<StorageBackendWebWorker> open(String name, String? path,
@@ -76,21 +75,22 @@ class BackendManagerWebWorker implements BackendManagerInterface {
     final objectStoreName = collection == null ? 'box' : name;
     // https://stackoverflow.com/a/17473952
     try {
-      var _exists = true;
+      var exists = true;
       if (collection == null) {
-        await indexedDB!.open(databaseName, version: 1, onUpgradeNeeded: (e) {
-          e.target.transaction!.abort();
-          _exists = false;
-        });
+        await completeRequest(indexedDB!.open(databaseName, 1)
+          ..onupgradeneeded = (e) {
+            e.target.transaction!.abort();
+            exists = false;
+          }.toJS);
       } else {
-        final db =
-            await indexedDB!.open(collection, version: 1, onUpgradeNeeded: (e) {
-          var db = e.target.result as Database;
-          _exists = (db.objectStoreNames ?? []).contains(objectStoreName);
-        });
-        _exists = (db.objectStoreNames ?? []).contains(objectStoreName);
+        final db = await completeRequest(indexedDB!.open(collection, 1)
+          ..onupgradeneeded = (e) {
+            var db = e.target.result as IDBDatabase;
+            exists = db.objectStoreNames.contains(objectStoreName);
+          }.toJS);
+        exists = (db.objectStoreNames ?? []).contains(objectStoreName);
       }
-      return _exists;
+      return exists;
     } catch (error) {
       return false;
     }

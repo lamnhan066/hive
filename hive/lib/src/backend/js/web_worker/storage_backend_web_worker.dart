@@ -65,7 +65,7 @@ class StorageBackendWebWorker extends StorageBackend {
     if (_cipher == null) {
       frameWriter.write(value);
     } else {
-      frameWriter.writeEncrypted(value, _cipher!);
+      frameWriter.writeEncrypted(value, _cipher);
     }
 
     var bytes = frameWriter.toBytes();
@@ -84,7 +84,7 @@ class StorageBackendWebWorker extends StorageBackend {
         if (_cipher == null) {
           return reader.read();
         } else {
-          return reader.readEncrypted(_cipher!);
+          return reader.readEncrypted(_cipher);
         }
       } else {
         return bytes;

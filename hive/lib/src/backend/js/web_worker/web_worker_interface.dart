@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:html';
-import 'dart:js_util';
-
+import 'dart:js_interop';
 import 'dart:math';
 
 import 'package:hive/hive.dart';
 import 'package:hive/src/backend/js/web_worker/web_worker_operation.dart';
+import 'package:web/web.dart';
 
 class WebWorkerInterface {
   final WebWorkerStackTraceCallback onStackTrace;
@@ -14,9 +13,10 @@ class WebWorkerInterface {
 
   final Map<double, Completer> _queries = {};
 
-  WebWorkerInterface(String href, this.onStackTrace) : _worker = Worker(href) {
+  WebWorkerInterface(String href, this.onStackTrace)
+      : _worker = Worker(href.toJS) {
     print('[hive] Created Worker($href)');
-    _worker.onMessage.listen(_handleMessage);
+    _worker.onmessage = _handleMessage.toJS;
   }
 
   Future<T> query<T>(String command, String database,
@@ -35,21 +35,21 @@ class WebWorkerInterface {
       transaction: transaction,
     );
 
-    _worker.postMessage(jsify(operation.toJson()));
+    _worker.postMessage(operation.toJson().toJSBox);
     return completer.future.timeout(Duration(seconds: 45));
   }
 
   void _handleMessage(MessageEvent event) {
-    final label = event.data['label'];
+    final label = (event.data as Map)['label'];
     // don't forget handling errors of our second thread...
     if (label == 'stacktrace') {
-      final origin = event.data['origin'];
+      final origin = (event.data as Map)['origin'];
       final completer = _queries[origin];
 
-      final error = event.data['error']!;
+      final error = (event.data as Map)['error']!;
 
       Future.value(
-        onStackTrace.call(event.data['stacktrace'] as String),
+        onStackTrace.call((event.data as Map)['stacktrace'] as String),
       ).then(
         (stackTrace) => completer?.completeError(
           WebWorkerError(error: error, stackTrace: stackTrace),
@@ -57,7 +57,7 @@ class WebWorkerInterface {
       );
     }
     final completer = _queries[label];
-    var response = event.data['response'];
+    var response = (event.data as Map)['response'];
     completer?.complete(response);
     _queries.remove(label);
   }
