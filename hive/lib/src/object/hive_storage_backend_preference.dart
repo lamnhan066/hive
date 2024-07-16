@@ -1,4 +1,4 @@
-part of hive;
+part of '../../hive.dart';
 
 /// converts a stringifyed, obfuscated [StackTrace] into a [StackTrace]
 typedef WebWorkerStackTraceCallback = FutureOr<StackTrace> Function(

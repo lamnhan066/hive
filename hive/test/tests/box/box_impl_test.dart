@@ -7,6 +7,7 @@ import 'package:hive/src/box/keystore.dart';
 import 'package:hive/src/hive_impl.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
+
 import '../common.dart';
 import '../mocks.dart';
 

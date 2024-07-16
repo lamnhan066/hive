@@ -1,22 +1,20 @@
 import 'dart:async';
 
 import 'package:hive/hive.dart';
-import 'package:hive/src/backend/storage_backend.dart';
 import 'package:hive/src/binary/frame.dart';
 import 'package:hive/src/box/box_base_impl.dart';
-import 'package:hive/src/hive_impl.dart';
 import 'package:hive/src/object/hive_object.dart';
 
 /// Not part of public API
 class BoxImpl<E> extends BoxBaseImpl<E> implements Box<E> {
   /// Not part of public API
   BoxImpl(
-    HiveImpl hive,
-    String name,
-    KeyComparator? keyComparator,
-    CompactionStrategy compactionStrategy,
-    StorageBackend backend,
-  ) : super(hive, name, keyComparator, compactionStrategy, backend);
+    super.hive,
+    super.name,
+    super.keyComparator,
+    super.compactionStrategy,
+    super.backend,
+  );
 
   @override
   final bool lazy = false;

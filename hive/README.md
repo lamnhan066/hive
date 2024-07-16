@@ -13,6 +13,7 @@ Hive is a lightweight and blazing fast key-value database written in pure Dart. 
 [Documentation & Samples](https://docs.hivedb.dev/) 📖
 
 ### Before you start
+
 Consider using [Isar](https://github.com/isar/isar), a Flutter database by the author of Hive that is superior in every way!
 
 ## Features
@@ -104,7 +105,6 @@ BoxCollections might be useful for some box hierarchy and development experience
     readOnly: false,
   );
 ```
-
 
 ## Store objects
 

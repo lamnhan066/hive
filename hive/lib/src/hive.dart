@@ -1,4 +1,4 @@
-part of hive;
+part of '../hive.dart';
 
 /// The main API interface of Hive. Available through the `Hive` constant.
 abstract class HiveInterface implements TypeRegistry {
@@ -35,7 +35,7 @@ abstract class HiveInterface implements TypeRegistry {
     bool crashRecovery = true,
     String? path,
     @Deprecated('Use [backend] with a [StorageBackendMemory] instead')
-        Uint8List? bytes,
+    Uint8List? bytes,
     StorageBackend? backend,
     String? collection,
     @Deprecated('Use encryptionCipher instead') List<int>? encryptionKey,

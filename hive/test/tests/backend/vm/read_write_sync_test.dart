@@ -168,16 +168,16 @@ void main() {
         var r6 = _asyncOperation(rw, _asyncRead, 5, history);
         await Future.wait([r1, r2, r3, r4, r5, r6]);
 
-        int _index(String str) => history.indexOf(str);
+        int index(String str) => history.indexOf(str);
 
-        expect(_index('stopwrite0') < _index('startreadwrite2'), true);
-        expect(_index('after0') < _index('startreadwrite2'), true);
-        expect(_index('stopread1') < _index('startreadwrite2'), true);
-        expect(_index('after1') < _index('startreadwrite2'), true);
+        expect(index('stopwrite0') < index('startreadwrite2'), true);
+        expect(index('after0') < index('startreadwrite2'), true);
+        expect(index('stopread1') < index('startreadwrite2'), true);
+        expect(index('after1') < index('startreadwrite2'), true);
 
-        expect(_index('after2') < _index('startwrite3'), true);
-        expect(_index('after3') < _index('startreadwrite4'), true);
-        expect(_index('after4') < _index('startread5'), true);
+        expect(index('after2') < index('startwrite3'), true);
+        expect(index('after3') < index('startreadwrite4'), true);
+        expect(index('after4') < index('startread5'), true);
       });
 
       test('handles errors', () async {

@@ -1,4 +1,4 @@
-part of hive_object_internal;
+part of 'hive_object.dart';
 
 /// Not part of public API
 extension HiveObjectInternal on HiveObjectMixin {
