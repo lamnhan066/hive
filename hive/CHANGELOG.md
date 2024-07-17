@@ -1,3 +1,9 @@
+# 3.0.0-dev.1
+
+- Support WASM.
+- Update dart min sdk to 3.3.0.
+- Use Flutter default lints.
+
 # 3.0.0-dev
 
 ### Enchantments
@@ -253,7 +259,7 @@ _Use latest version of `hive_generator`_
 
 - Changed type of `encryptionKey` from `Uint8List` to `List<int>`
 
-### Important:
+### Important
 
 Due to a bug in previous Hive versions, boxes whose name contains uppercase characters were stored in a file that also contains upper case characters (e.g. 'myBox' -> 'myBox.hive').
 

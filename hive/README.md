@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hivedb/hive/master/.github/logo_transparent.svg?sanitize=true" width="350px">
+  <img src="https://raw.githubusercontent.com/lamnhan066/hive/master/.github/logo_transparent.svg?sanitize=true" width="350px">
 </p>
 <h2 align="center">Fast, Enjoyable & Secure NoSQL Database</h2>
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/hivedb/hive/test.yml?label=tests&labelColor=333940&logo=github)](https://github.com/hivedb/hive/actions)
-[![Codecov branch](https://img.shields.io/codecov/c/github/hivedb/hive/nndb?labelColor=333940&logo=codecov&logoColor=white)](https://codecov.io/gh/hivedb/hive)
-[![Pub Version](https://img.shields.io/pub/v/hive?label=pub.dev&labelColor=333940&logo=dart)](https://pub.dev/packages/hive)
-[![GitHub](https://img.shields.io/github/license/hivedb/hive?color=%23007A88&labelColor=333940&logo=apache)](https://github.com/hivedb/hive/blob/master/LICENSE)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/lamnhan066/hive/test.yml?label=tests&labelColor=333940&logo=github)](https://github.com/hivedb/hive/actions)
+[![Codecov branch](https://img.shields.io/codecov/c/github/lamnhan066/hive/nndb?labelColor=333940&logo=codecov&logoColor=white)](https://codecov.io/gh/hivedb/hive)
+[![Pub Version](https://img.shields.io/pub/v/hive_plus?label=pub.dev&labelColor=333940&logo=dart)](https://pub.dev/packages/hive_plus)
+[![GitHub](https://img.shields.io/github/license/lamnhan066/hive?color=%23007A88&labelColor=333940&logo=apache)](https://github.com/hivedb/hive/blob/master/LICENSE)
 
 Hive is a lightweight and blazing fast key-value database written in pure Dart. Inspired by [Bitcask](https://en.wikipedia.org/wiki/Bitcask).
 
@@ -14,7 +14,7 @@ Hive is a lightweight and blazing fast key-value database written in pure Dart. 
 
 ### Before you start
 
-Consider using [Isar](https://github.com/isar/isar), a Flutter database by the author of Hive that is superior in every way!
+This is a forked version of the legacy `hive` (v2.2.3). I used this hive a lot and found it very efficient so I'm trying to recover it.
 
 ## Features
 
