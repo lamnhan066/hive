@@ -1,6 +1,6 @@
 library hive_flutter.test.mocks;
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:mockito/annotations.dart';
 
 export 'mocks.mocks.dart';

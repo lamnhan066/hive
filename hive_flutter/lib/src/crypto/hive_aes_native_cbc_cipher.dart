@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hive_flutter/src/crypto/extensions.dart';
+import 'package:hive_flutter_plus/hive_flutter_plus.dart';
+import 'package:hive_flutter_plus/src/crypto/extensions.dart';
 
 /// Multi-threaded cipher. Uses AES256 CBC
 ///
@@ -41,11 +41,10 @@ class HiveAesNativeCbcCipher extends HiveAesCipher {
   late final List<int> _key;
   final Completer<SecretKey> secretKey = Completer();
 
-  HiveAesNativeCbcCipher(List<int> key)
+  HiveAesNativeCbcCipher(super.key)
       : assert(key.length == 32 && key.every((it) => it > 0 || it <= 255),
             'The encryption key has to be a 32 byte (256 bit) array.'),
-        _key = key,
-        super(key) {
+        _key = key {
     _algorithm.newSecretKeyFromBytes(_key).then(secretKey.complete);
   }
 
