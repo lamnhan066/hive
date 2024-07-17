@@ -111,10 +111,10 @@ class StorageBackendJs extends StorageBackend {
     if (store.has('getAllKeys') && !cursor) {
       var completer = Completer<List<dynamic>>();
       var request = getStore(false).getAllKeys(null);
-      request.onsuccess = (_) {
+      request.onsuccess = (MessageEvent _) {
         completer.complete(request.result as List<dynamic>?);
       }.toJS;
-      request.onerror = (_) {
+      request.onerror = (MessageEvent _) {
         completer.completeError(request.error!);
       }.toJS;
       return completer.future;
@@ -133,11 +133,12 @@ class StorageBackendJs extends StorageBackend {
     if (store.has('getAll') && !cursor) {
       var completer = Completer<Iterable<dynamic>>();
       var request = store.getAll(null);
-      request.onsuccess = (_) async {
+      request.onsuccess = ((MessageEvent _) async {
         var futures = (request.result as List).map(decodeValue);
         completer.complete(await Future.wait(futures));
-      }.toJS;
-      request.onerror = (_) {
+      } as void Function(MessageEvent))
+          .toJS;
+      request.onerror = (MessageEvent _) {
         completer.completeError(request.error!);
       }.toJS;
       return completer.future;
@@ -211,14 +212,14 @@ class StorageBackendJs extends StorageBackend {
     if (_db.objectStoreNames.length == 1) {
       await completeRequest(indexDB.deleteDatabase(_db.name));
     } else {
-      final db = await completeRequest(indexDB.open(_db.name, 1)
-        ..onupgradeneeded = (e) {
-          var db = e.target.result as IDBDatabase;
+      IDBDatabase db = await completeRequest(indexDB.open(_db.name, 1)
+        ..onupgradeneeded = (MessageEvent e) {
+          var db = (e.target as IDBRequest).result as IDBDatabase;
           if (db.objectStoreNames.contains(objectStoreName)) {
             db.deleteObjectStore(objectStoreName);
           }
         }.toJS);
-      if ((db.objectStoreNames ?? []).isEmpty) {
+      if (db.objectStoreNames.length == 0) {
         await completeRequest(indexDB.deleteDatabase(_db.name));
       }
     }

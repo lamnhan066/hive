@@ -78,17 +78,17 @@ class BackendManagerWebWorker implements BackendManagerInterface {
       var exists = true;
       if (collection == null) {
         await completeRequest(indexedDB!.open(databaseName, 1)
-          ..onupgradeneeded = (e) {
-            e.target.transaction!.abort();
+          ..onupgradeneeded = (MessageEvent e) {
+            (e.target as IDBRequest).transaction!.abort();
             exists = false;
           }.toJS);
       } else {
-        final db = await completeRequest(indexedDB!.open(collection, 1)
-          ..onupgradeneeded = (e) {
-            var db = e.target.result as IDBDatabase;
+        IDBDatabase db = await completeRequest(indexedDB!.open(collection, 1)
+          ..onupgradeneeded = (MessageEvent e) {
+            var db = (e.target as IDBRequest).result as IDBDatabase;
             exists = db.objectStoreNames.contains(objectStoreName);
           }.toJS);
-        exists = (db.objectStoreNames ?? []).contains(objectStoreName);
+        exists = db.objectStoreNames.contains(objectStoreName);
       }
       return exists;
     } catch (error) {

@@ -5,6 +5,8 @@ import 'dart:js_interop';
 import 'package:hive_plus/src/backend/js/web_worker/web_worker_operation.dart';
 import 'package:web/web.dart';
 
+import '../utils.dart';
+
 ///
 ///
 /// CAUTION: THIS FILE NEEDS TO BE MANUALLY COMPILED
@@ -28,10 +30,11 @@ import 'package:web/web.dart';
 @pragma('dart2js:tryInline')
 Future<void> startWebWorker() async {
   print('[web worker]: Starting...');
-  self.onmessage = (event) async {
-    final data = event.data;
+
+  void onMessage(MessageEvent event) async {
+    final data = event.data as Map;
     try {
-      final operation = WebWorkerOperation.fromJson(Map.from(data as Map));
+      final operation = WebWorkerOperation.fromJson(Map.from(data));
 
       void respond([Object? response]) {
         sendResponse(operation.label, response);
@@ -53,38 +56,38 @@ Future<void> startWebWorker() async {
 
             var version = await getDatabaseVersion(operation.database);
 
-            var db = await _completeRequest(indexedDB!
+            IDBDatabase db = await completeRequest(indexedDB!
                 .open(operation.database, version)
-              ..onupgradeneeded = (e) {
-                var db = e.target.result as IDBDatabase;
+              ..onupgradeneeded = (MessageEvent e) {
+                var db = (e.target as IDBRequest).result as IDBDatabase;
                 for (var objectStoreName in storeNames) {
                   if (!db.objectStoreNames.contains(objectStoreName)) {
                     db.createObjectStore(objectStoreName);
                   }
                 }
               }.toJS
-              ..onblocked = (e) {
+              ..onblocked = (MessageEvent e) {
                 print('[web worker] Error opening indexed DB: ${event.data}');
               }.toJS);
 
             // in case the objectStore is not contained, re-open the db and
             // update version
             if (!(storeNames.every((objectStoreName) =>
-                (db.objectStoreNames ?? []).contains(objectStoreName)))) {
+                db.objectStoreNames.contains(objectStoreName)))) {
               db.close();
               version++;
               setDatabaseVersion(operation.database, version);
-              db = await _completeRequest(indexedDB!
+              db = await completeRequest(indexedDB!
                   .open(operation.database, version)
-                ..onupgradeneeded = (e) {
-                  var db = e.target.result as IDBDatabase;
+                ..onupgradeneeded = (MessageEvent e) {
+                  var db = (e.target as IDBRequest).result as IDBDatabase;
                   for (var objectStoreName in storeNames) {
                     if (!db.objectStoreNames.contains(objectStoreName)) {
                       db.createObjectStore(objectStoreName);
                     }
                   }
                 }.toJS
-                ..onblocked = (e) {
+                ..onblocked = (MessageEvent e) {
                   print('[web worker] Error opening indexed DB: ${event.data}');
                 }.toJS);
             }
@@ -108,14 +111,14 @@ Future<void> startWebWorker() async {
           break;
 
         case 'add':
-          await _completeRequest(
+          await completeRequest(
               getObjectStore(operation.database, operation.objectStore!, true)
                   .add(operation.value as JSAny, operation.key as JSAny));
           respond();
           break;
 
         case 'clear':
-          await _completeRequest(
+          await completeRequest(
               getObjectStore(operation.database, operation.objectStore!, true)
                   .clear());
           respond();
@@ -124,21 +127,23 @@ Future<void> startWebWorker() async {
         case 'delete':
           try {
             final db0 = _databases[operation.database] ??
-                await _completeRequest(indexedDB!.open(operation.database));
+                await completeRequest(indexedDB!.open(operation.database));
 
             // directly deleting the entire DB if a non-collection Box
             if (db0!.objectStoreNames.length == 1) {
-              await _completeRequest(indexedDB!.deleteDatabase(db0.name));
+              await completeRequest(indexedDB!.deleteDatabase(db0.name));
             } else {
-              final db = await _completeRequest(indexedDB!.open(db0.name, 1)
-                ..onupgradeneeded = (e) {
-                  var db = e.target.result as IDBDatabase;
-                  if (db.objectStoreNames.contains(operation.objectStore!)) {
-                    db.deleteObjectStore(operation.objectStore!);
-                  }
-                }.toJS);
-              if ((db.objectStoreNames ?? []).isEmpty) {
-                await _completeRequest(indexedDB!.deleteDatabase(db0.name));
+              IDBDatabase db =
+                  await completeRequest(indexedDB!.open(db0.name, 1)
+                    ..onupgradeneeded = (MessageEvent e) {
+                      var db = (e.target as IDBRequest).result as IDBDatabase;
+                      if (db.objectStoreNames
+                          .contains(operation.objectStore!)) {
+                        db.deleteObjectStore(operation.objectStore!);
+                      }
+                    }.toJS);
+              if (db.objectStoreNames.length == 0) {
+                await completeRequest(indexedDB!.deleteDatabase(db0.name));
               }
             }
           } finally {}
@@ -150,10 +155,10 @@ Future<void> startWebWorker() async {
           var request =
               getObjectStore(operation.database, operation.objectStore!, false)
                   .getAll(null);
-          request.onsuccess = (_) {
+          request.onsuccess = (MessageEvent _) {
             completer.complete(request.result as List<dynamic>?);
           }.toJS;
-          request.onerror = (_) {
+          request.onerror = (MessageEvent _) {
             completer.completeError(request.error!);
           }.toJS;
           final result = await completer.future;
@@ -166,10 +171,10 @@ Future<void> startWebWorker() async {
             var request = getObjectStore(
                     operation.database, operation.objectStore!, false)
                 .getAllKeys(null);
-            request.onsuccess = (_) {
+            request.onsuccess = (MessageEvent _) {
               completer.complete(request.result as List<dynamic>?);
             }.toJS;
-            request.onerror = (_) {
+            request.onerror = (MessageEvent _) {
               completer.completeError(request.error!);
             }.toJS;
           } catch (e) {
@@ -186,7 +191,7 @@ Future<void> startWebWorker() async {
           final values = List.from(operation.value as Iterable);
           final futures = <Future>[];
           for (var i = 0; i < keys.length; i++) {
-            futures.add(_completeRequest(objectStore.put(values[i], keys[i])));
+            futures.add(completeRequest(objectStore.put(values[i], keys[i])));
           }
           await Future.wait(futures);
 
@@ -199,7 +204,7 @@ Future<void> startWebWorker() async {
           final keys = List.from(operation.key as Iterable);
           final futures = <Future>[];
           for (var i = 0; i < keys.length; i++) {
-            futures.add(_completeRequest(objectStore.delete(keys[i])));
+            futures.add(completeRequest(objectStore.delete(keys[i])));
           }
           await Future.wait(futures);
 
@@ -210,7 +215,7 @@ Future<void> startWebWorker() async {
           final store =
               getObjectStore(operation.database, operation.objectStore!, false);
           final response =
-              await _completeRequest(store.get(operation.key as JSAny));
+              await completeRequest(store.get(operation.key as JSAny));
           respond(response);
 
           break;
@@ -239,17 +244,19 @@ Future<void> startWebWorker() async {
     } catch (e, s) {
       _replyError(e, s, data['label'] as double);
     }
-  }.toJS;
+  }
+
+  self.onmessage = onMessage.toJS;
 }
 
 final Map<String, int> _versionCache = {};
 
 Future<int> getDatabaseVersion(String database) async {
   if (_versionCache.isEmpty) {
-    final db = await _completeRequest(
+    final db = await completeRequest(
         indexedDB!.open('hive_web_worker_database_versions', 1)
-          ..onupgradeneeded = (e) {
-            final db = (e.target.result as IDBDatabase);
+          ..onupgradeneeded = (MessageEvent e) {
+            final db = (e.target as IDBRequest).result as IDBDatabase;
             db.createObjectStore('versions');
           }.toJS);
     _databases['hive_web_worker_database_versions'] = db;
@@ -275,7 +282,7 @@ void setDatabaseVersion(String database, int version) {
   (_putVersionsFuture ?? Future.value(null)).then((value) {
     final db = _databases['hive_web_worker_database_versions']!;
     final txn = db.transaction('versions'.toJS, 'readwrite');
-    _putVersionsFuture = _completeRequest(txn
+    _putVersionsFuture = completeRequest(txn
         .objectStore('versions')
         .put(_versionCache.toJSBox, 'versions'.toJS));
     _putVersionsFuture?.then((value) => _putVersionsFuture = null);
@@ -339,16 +346,4 @@ IDBObjectStore getObjectStore(
         .transaction(box.toJS, write ? 'readwrite' : 'readonly')
         .objectStore(box);
   }
-}
-
-Future<T> _completeRequest<T>(IDBRequest request) {
-  var completer = Completer<T>.sync();
-  void onsuccess(e) {
-    T result = request.result as T;
-    completer.complete(result);
-  }
-
-  request.onsuccess = onsuccess.toJS;
-  request.onerror = completer.completeError.toJS;
-  return completer.future;
 }

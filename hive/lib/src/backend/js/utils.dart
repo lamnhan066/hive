@@ -5,11 +5,15 @@ import 'package:web/web.dart';
 
 Future<T> completeRequest<T>(IDBRequest request) {
   var completer = Completer<T>.sync();
-  request.onsuccess = (e) {
+  void onsuccess(JSAny e) {
     T result = request.result as T;
     completer.complete(result);
+  }
+
+  request.onsuccess = onsuccess.toJS;
+  request.onerror = (JSAny e) {
+    completer.completeError(e);
   }.toJS;
-  request.onerror = completer.completeError.toJS;
   return completer.future;
 }
 
@@ -21,9 +25,11 @@ Stream<T> cursorStreamFromResult<T extends IDBCursorWithValue>(
   var controller = StreamController<T>(sync: true);
 
   //TODO: Report stacktrace once issue 4061 is resolved.
-  request.onerror = controller.addError.toJS;
+  request.onerror = (MessageEvent e) {
+    controller.addError(e);
+  }.toJS;
 
-  request.onsuccess = (e) {
+  request.onsuccess = (MessageEvent e) {
     T? cursor = request.result as dynamic;
     if (cursor == null) {
       controller.close();

@@ -19,9 +19,9 @@ class BackendManager implements BackendManagerInterface {
     final databaseName = collection ?? name;
     final objectStoreName = collection == null ? 'box' : name;
 
-    var db = await completeRequest(indexedDB!.open(databaseName, 1)
-      ..onupgradeneeded = (e) {
-        var db = e.target.result as IDBDatabase;
+    IDBDatabase db = await completeRequest(indexedDB!.open(databaseName, 1)
+      ..onupgradeneeded = (MessageEvent e) {
+        var db = (e.target as IDBRequest).result as IDBDatabase;
         if (!db.objectStoreNames.contains(objectStoreName)) {
           db.createObjectStore(objectStoreName);
         }
@@ -29,11 +29,11 @@ class BackendManager implements BackendManagerInterface {
 
     // in case the objectStore is not contained, re-open the db and
     // update version
-    if (!(db.objectStoreNames ?? []).contains(objectStoreName)) {
+    if (!db.objectStoreNames.contains(objectStoreName)) {
       db = await completeRequest(
-        indexedDB!.open(databaseName, (db.version ?? 1) + 1)
-          ..onupgradeneeded = (e) {
-            var db = e.target.result as IDBDatabase;
+        indexedDB!.open(databaseName, db.version + 1)
+          ..onupgradeneeded = (MessageEvent e) {
+            var db = (e.target as IDBRequest).result as IDBDatabase;
             if (!db.objectStoreNames.contains(objectStoreName)) {
               db.createObjectStore(objectStoreName);
             }
@@ -51,9 +51,9 @@ class BackendManager implements BackendManagerInterface {
       bool crashRecovery,
       HiveCipher? cipher,
       String collection) async {
-    var db = await completeRequest(indexedDB!.open(collection, 1)
-      ..onupgradeneeded = (e) {
-        var db = e.target.result as IDBDatabase;
+    IDBDatabase db = await completeRequest(indexedDB!.open(collection, 1)
+      ..onupgradeneeded = (MessageEvent e) {
+        var db = (e.target as IDBRequest).result as IDBDatabase;
         for (var objectStoreName in names) {
           if (!db.objectStoreNames.contains(objectStoreName)) {
             db.createObjectStore(objectStoreName);
@@ -63,12 +63,12 @@ class BackendManager implements BackendManagerInterface {
 
     // in case the objectStore is not contained, re-open the db and
     // update version
-    if (!(names.every((objectStoreName) =>
-        (db.objectStoreNames ?? []).contains(objectStoreName)))) {
+    if (!(names.every(
+        (objectStoreName) => db.objectStoreNames.contains(objectStoreName)))) {
       db = await completeRequest(
-        indexedDB!.open(collection, (db.version ?? 1) + 1)
-          ..onupgradeneeded = (e) {
-            var db = e.target.result as IDBDatabase;
+        indexedDB!.open(collection, db.version + 1)
+          ..onupgradeneeded = (MessageEvent e) {
+            var db = (e.target as IDBRequest).result as IDBDatabase;
             for (var objectStoreName in names) {
               if (!db.objectStoreNames.contains(objectStoreName)) {
                 db.createObjectStore(objectStoreName);
@@ -91,14 +91,14 @@ class BackendManager implements BackendManagerInterface {
     if (collection == null) {
       await completeRequest(indexedDB!.deleteDatabase(databaseName));
     } else {
-      final db = await completeRequest(indexedDB!.open(databaseName, 1)
-        ..onupgradeneeded = (e) {
-          var db = e.target.result as IDBDatabase;
+      IDBDatabase db = await completeRequest(indexedDB!.open(databaseName, 1)
+        ..onupgradeneeded = (MessageEvent e) {
+          var db = (e.target as IDBRequest).result as IDBDatabase;
           if (db.objectStoreNames.contains(objectStoreName)) {
             db.deleteObjectStore(objectStoreName);
           }
         }.toJS);
-      if ((db.objectStoreNames ?? []).isEmpty) {
+      if (db.objectStoreNames.length == 0) {
         indexedDB!.deleteDatabase(databaseName);
       }
     }
@@ -114,14 +114,14 @@ class BackendManager implements BackendManagerInterface {
       var exists = true;
       if (collection == null) {
         await completeRequest(indexedDB!.open(databaseName, 1)
-          ..onupgradeneeded = (e) {
-            e.target.transaction!.abort();
+          ..onupgradeneeded = (MessageEvent e) {
+            (e.target as IDBRequest).transaction!.abort();
             exists = false;
           }.toJS);
       } else {
-        final db = await completeRequest(indexedDB!.open(collection, 1)
-          ..onupgradeneeded = (e) {
-            var db = e.target.result as IDBDatabase;
+        IDBDatabase db = await completeRequest(indexedDB!.open(collection, 1)
+          ..onupgradeneeded = (MessageEvent e) {
+            var db = (e.target as IDBRequest).result as IDBDatabase;
             exists = db.objectStoreNames.contains(objectStoreName);
           }.toJS);
         exists = db.objectStoreNames.contains(objectStoreName);
