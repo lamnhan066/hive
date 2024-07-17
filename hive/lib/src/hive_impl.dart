@@ -3,16 +3,16 @@ import 'dart:collection';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/adapters/big_int_adapter.dart';
-import 'package:hive/src/adapters/date_time_adapter.dart';
-import 'package:hive/src/box/box_base_impl.dart';
-import 'package:hive/src/box/box_impl.dart';
-import 'package:hive/src/box/default_compaction_strategy.dart';
-import 'package:hive/src/box/default_key_comparator.dart';
-import 'package:hive/src/box/lazy_box_impl.dart';
-import 'package:hive/src/registry/type_registry_impl.dart';
-import 'package:hive/src/util/extensions.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/adapters/big_int_adapter.dart';
+import 'package:hive_plus/src/adapters/date_time_adapter.dart';
+import 'package:hive_plus/src/box/box_base_impl.dart';
+import 'package:hive_plus/src/box/box_impl.dart';
+import 'package:hive_plus/src/box/default_compaction_strategy.dart';
+import 'package:hive_plus/src/box/default_key_comparator.dart';
+import 'package:hive_plus/src/box/lazy_box_impl.dart';
+import 'package:hive_plus/src/registry/type_registry_impl.dart';
+import 'package:hive_plus/src/util/extensions.dart';
 
 import 'backend/storage_backend.dart';
 

@@ -1,4 +1,4 @@
-name: hive
+name: hive_plus
 description: Lightweight and blazing fast key-value database written in pure Dart. Strongly encrypted using AES-256.
 version: 3.0.0-dev
 homepage: https://github.com/lamnhan066/hive
@@ -11,12 +11,6 @@ dependencies:
   meta: ^1.3.0
   crypto: ^3.0.0
   web: ^1.0.0
-  isolate_manager: ^5.1.0
-
-dependency_overrides:
-  web: ^1.0.0
-  isolate_manager:
-    path: /Users/thanhnhan/Documents/Development/Projects/Flutter Plugin/isolate_manager
 
 dev_dependencies:
   test: ^1.17.12

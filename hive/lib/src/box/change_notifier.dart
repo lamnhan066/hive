@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/binary/frame.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/binary/frame.dart';
 import 'package:meta/meta.dart';
 
 /// Not part of public API

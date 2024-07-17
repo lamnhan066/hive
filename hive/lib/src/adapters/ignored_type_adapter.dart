@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_plus/hive.dart';
 
 /// Not part of public API
 class IgnoredTypeAdapter<T> implements TypeAdapter<T?> {

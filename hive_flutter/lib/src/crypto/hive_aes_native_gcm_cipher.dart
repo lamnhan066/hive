@@ -41,11 +41,10 @@ class HiveAesNativeGcmCipher extends HiveAesCipher {
   late final List<int> _key;
   final Completer<SecretKey> secretKey = Completer();
 
-  HiveAesNativeGcmCipher(List<int> key)
+  HiveAesNativeGcmCipher(super.key)
       : assert(key.length == 32 && key.every((it) => it > 0 || it <= 255),
             'The encryption key has to be a 32 byte (256 bit) array.'),
-        _key = key,
-        super(key) {
+        _key = key {
     _algorithm.newSecretKeyFromBytes(_key).then(secretKey.complete);
   }
 

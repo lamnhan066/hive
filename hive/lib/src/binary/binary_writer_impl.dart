@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/crypto/crc32.dart';
-import 'package:hive/src/object/hive_list_impl.dart';
-import 'package:hive/src/registry/type_registry_impl.dart';
-import 'package:hive/src/util/extensions.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/crypto/crc32.dart';
+import 'package:hive_plus/src/object/hive_list_impl.dart';
+import 'package:hive_plus/src/registry/type_registry_impl.dart';
+import 'package:hive_plus/src/util/extensions.dart';
 import 'package:meta/meta.dart';
 
 /// Not part of public API

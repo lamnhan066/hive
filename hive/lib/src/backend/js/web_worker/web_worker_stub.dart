@@ -7,7 +7,7 @@ import 'dart:async';
 /// 1. in your project, create a file `web/web_worker.dart`
 /// 2. add the following contents:
 /// ```dart
-/// import 'package:hive/hive.dart';
+/// import 'package:hive_plus/hive.dart';
 ///
 /// Future<void> main() => startWebWorker();
 /// ```

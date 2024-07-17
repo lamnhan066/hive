@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/backend/storage_backend.dart';
-import 'package:hive/src/backend/vm/storage_backend_vm.dart';
-import 'package:hive/src/hive_impl.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/backend/storage_backend.dart';
+import 'package:hive_plus/src/backend/vm/storage_backend_vm.dart';
+import 'package:hive_plus/src/hive_impl.dart';
 import 'package:meta/meta.dart';
 
 /// Not part of public API

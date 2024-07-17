@@ -1,7 +1,7 @@
 @TestOn('vm')
 library;
 
-import 'package:hive/src/io/buffered_file_reader.dart';
+import 'package:hive_plus/src/io/buffered_file_reader.dart';
 import 'package:test/test.dart';
 
 import '../common.dart';

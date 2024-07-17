@@ -16,7 +16,7 @@ void main() {
     });
 
     test('.read()', () {
-      final BinaryReader binaryReader = MockBinaryReader();
+      final binaryReader = MockBinaryReader();
       when(binaryReader.readInt()).thenReturn(totalMinutes);
 
       final readTime = TimeOfDayAdapter().read(binaryReader);

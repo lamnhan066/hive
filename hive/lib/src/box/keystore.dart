@@ -3,12 +3,12 @@
 
 import 'dart:collection';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/box/change_notifier.dart';
-import 'package:hive/src/box/default_key_comparator.dart';
-import 'package:hive/src/object/hive_object.dart';
-import 'package:hive/src/util/indexable_skip_list.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/box/change_notifier.dart';
+import 'package:hive_plus/src/box/default_key_comparator.dart';
+import 'package:hive_plus/src/object/hive_object.dart';
+import 'package:hive_plus/src/util/indexable_skip_list.dart';
 import 'package:meta/meta.dart';
 
 import 'box_base_impl.dart';

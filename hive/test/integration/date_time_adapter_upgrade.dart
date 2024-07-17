@@ -1,5 +1,5 @@
-import 'package:hive/src/adapters/date_time_adapter.dart';
-import 'package:hive/src/registry/type_registry_impl.dart';
+import 'package:hive_plus/src/adapters/date_time_adapter.dart';
+import 'package:hive_plus/src/registry/type_registry_impl.dart';
 import 'package:test/test.dart';
 
 void main() {

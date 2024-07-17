@@ -1,7 +1,7 @@
-import 'package:hive/src/backend/stub/random_access_buffer.dart';
-import 'package:hive/src/binary/binary_writer_impl.dart';
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/registry/type_registry_impl.dart';
+import 'package:hive_plus/src/backend/stub/random_access_buffer.dart';
+import 'package:hive_plus/src/binary/binary_writer_impl.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/registry/type_registry_impl.dart';
 import 'package:test/test.dart';
 
 void main() {

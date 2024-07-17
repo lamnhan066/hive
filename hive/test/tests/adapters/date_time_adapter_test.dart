@@ -1,4 +1,4 @@
-import 'package:hive/src/adapters/date_time_adapter.dart';
+import 'package:hive_plus/src/adapters/date_time_adapter.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

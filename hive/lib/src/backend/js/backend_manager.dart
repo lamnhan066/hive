@@ -1,6 +1,6 @@
-import 'package:hive/hive.dart';
-import 'package:hive/src/backend/storage_backend.dart';
-import 'package:hive/src/backend/stub/backend_manager_memory.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/backend/storage_backend.dart';
+import 'package:hive_plus/src/backend/stub/backend_manager_memory.dart';
 
 import 'native/backend_manager.dart' as native;
 import 'web_worker/backend_manager.dart' as web_worker;

@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
-import 'package:hive/hive.dart';
-import 'package:hive/src/backend/storage_backend.dart';
-import 'package:hive/src/hive_impl.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/backend/storage_backend.dart';
+import 'package:hive_plus/src/hive_impl.dart';
 
 import 'box_collection_stub.dart' as implementation;
 

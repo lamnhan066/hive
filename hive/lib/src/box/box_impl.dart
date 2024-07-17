@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/box/box_base_impl.dart';
-import 'package:hive/src/object/hive_object.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/box/box_base_impl.dart';
+import 'package:hive_plus/src/object/hive_object.dart';
 
 /// Not part of public API
 class BoxImpl<E> extends BoxBaseImpl<E> implements Box<E> {

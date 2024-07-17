@@ -2,12 +2,12 @@
 // in hive_flutter/test/mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:convert' as _i5;
-import 'dart:typed_data' as _i4;
+import 'dart:convert' as i5;
+import 'dart:typed_data' as i4;
 
-import 'package:hive/hive.dart' as _i3;
-import 'package:hive/src/object/hive_object.dart' as _i1;
-import 'package:mockito/mockito.dart' as _i2;
+import 'package:hive_plus/hive.dart' as i3;
+import 'package:hive_plus/src/object/hive_object.dart' as i1;
+import 'package:mockito/mockito.dart' as i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -15,13 +15,13 @@ import 'package:mockito/mockito.dart' as _i2;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeHiveList<E extends _i1.HiveObjectMixin> extends _i2.Fake
-    implements _i3.HiveList<E> {}
+class _FakeHiveList<E extends i1.HiveObjectMixin> extends i2.Fake
+    implements i3.HiveList<E> {}
 
 /// A class which mocks [BinaryReader].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBinaryReader extends _i2.Mock implements _i3.BinaryReader {
+class MockBinaryReader extends i2.Mock implements i3.BinaryReader {
   @override
   int get availableBytes =>
       (super.noSuchMethod(Invocation.getter(#availableBytes), returnValue: 0)
@@ -38,13 +38,13 @@ class MockBinaryReader extends _i2.Mock implements _i3.BinaryReader {
       (super.noSuchMethod(Invocation.method(#readByte, []), returnValue: 0)
           as int);
   @override
-  _i4.Uint8List viewBytes(int? bytes) =>
+  i4.Uint8List viewBytes(int? bytes) =>
       (super.noSuchMethod(Invocation.method(#viewBytes, [bytes]),
-          returnValue: _i4.Uint8List(0)) as _i4.Uint8List);
+          returnValue: i4.Uint8List(0)) as i4.Uint8List);
   @override
-  _i4.Uint8List peekBytes(int? bytes) =>
+  i4.Uint8List peekBytes(int? bytes) =>
       (super.noSuchMethod(Invocation.method(#peekBytes, [bytes]),
-          returnValue: _i4.Uint8List(0)) as _i4.Uint8List);
+          returnValue: i4.Uint8List(0)) as i4.Uint8List);
   @override
   int readWord() =>
       (super.noSuchMethod(Invocation.method(#readWord, []), returnValue: 0)
@@ -72,14 +72,13 @@ class MockBinaryReader extends _i2.Mock implements _i3.BinaryReader {
   @override
   String readString(
           [int? byteCount,
-          _i5.Converter<List<int>, String>? decoder =
-              const _i5.Utf8Decoder()]) =>
+          i5.Converter<List<int>, String>? decoder = const i5.Utf8Decoder()]) =>
       (super.noSuchMethod(Invocation.method(#readString, [byteCount, decoder]),
           returnValue: '') as String);
   @override
-  _i4.Uint8List readByteList([int? length]) =>
+  i4.Uint8List readByteList([int? length]) =>
       (super.noSuchMethod(Invocation.method(#readByteList, [length]),
-          returnValue: _i4.Uint8List(0)) as _i4.Uint8List);
+          returnValue: i4.Uint8List(0)) as i4.Uint8List);
   @override
   List<int> readIntList([int? length]) =>
       (super.noSuchMethod(Invocation.method(#readIntList, [length]),
@@ -95,8 +94,7 @@ class MockBinaryReader extends _i2.Mock implements _i3.BinaryReader {
   @override
   List<String> readStringList(
           [int? length,
-          _i5.Converter<List<int>, String>? decoder =
-              const _i5.Utf8Decoder()]) =>
+          i5.Converter<List<int>, String>? decoder = const i5.Utf8Decoder()]) =>
       (super.noSuchMethod(Invocation.method(#readStringList, [length, decoder]),
           returnValue: <String>[]) as List<String>);
   @override
@@ -108,16 +106,16 @@ class MockBinaryReader extends _i2.Mock implements _i3.BinaryReader {
       (super.noSuchMethod(Invocation.method(#readMap, [length]),
           returnValue: <dynamic, dynamic>{}) as Map<dynamic, dynamic>);
   @override
-  _i3.HiveList<_i1.HiveObjectMixin> readHiveList([int? length]) =>
+  i3.HiveList<i1.HiveObjectMixin> readHiveList([int? length]) =>
       (super.noSuchMethod(Invocation.method(#readHiveList, [length]),
-              returnValue: _FakeHiveList<_i1.HiveObjectMixin>())
-          as _i3.HiveList<_i1.HiveObjectMixin>);
+              returnValue: _FakeHiveList<i1.HiveObjectMixin>())
+          as i3.HiveList<i1.HiveObjectMixin>);
 }
 
 /// A class which mocks [BinaryWriter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBinaryWriter extends _i2.Mock implements _i3.BinaryWriter {
+class MockBinaryWriter extends i2.Mock implements i3.BinaryWriter {
   @override
   void writeByte(int? byte) =>
       super.noSuchMethod(Invocation.method(#writeByte, [byte]),
@@ -149,8 +147,7 @@ class MockBinaryWriter extends _i2.Mock implements _i3.BinaryWriter {
   @override
   void writeString(String? value,
           {bool? writeByteCount = true,
-          _i5.Converter<String, List<int>>? encoder =
-              const _i5.Utf8Encoder()}) =>
+          i5.Converter<String, List<int>>? encoder = const i5.Utf8Encoder()}) =>
       super.noSuchMethod(
           Invocation.method(#writeString, [value],
               {#writeByteCount: writeByteCount, #encoder: encoder}),
@@ -181,8 +178,7 @@ class MockBinaryWriter extends _i2.Mock implements _i3.BinaryWriter {
   @override
   void writeStringList(List<String>? list,
           {bool? writeLength = true,
-          _i5.Converter<String, List<int>>? encoder =
-              const _i5.Utf8Encoder()}) =>
+          i5.Converter<String, List<int>>? encoder = const i5.Utf8Encoder()}) =>
       super.noSuchMethod(
           Invocation.method(#writeStringList, [list],
               {#writeLength: writeLength, #encoder: encoder}),
@@ -198,7 +194,7 @@ class MockBinaryWriter extends _i2.Mock implements _i3.BinaryWriter {
           Invocation.method(#writeMap, [map], {#writeLength: writeLength}),
           returnValueForMissingStub: null);
   @override
-  void writeHiveList(_i3.HiveList<_i1.HiveObjectMixin>? list,
+  void writeHiveList(i3.HiveList<i1.HiveObjectMixin>? list,
           {bool? writeLength = true}) =>
       super.noSuchMethod(
           Invocation.method(

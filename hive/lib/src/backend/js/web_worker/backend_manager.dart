@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:js_interop';
 
-import 'package:hive/hive.dart';
-import 'package:hive/src/backend/js/utils.dart';
-import 'package:hive/src/backend/js/web_worker/web_worker_interface.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/backend/js/utils.dart';
+import 'package:hive_plus/src/backend/js/web_worker/web_worker_interface.dart';
 import 'package:web/web.dart';
 
 import '../../storage_backend.dart';

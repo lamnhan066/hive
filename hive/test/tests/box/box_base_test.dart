@@ -1,10 +1,10 @@
-import 'package:hive/hive.dart';
-import 'package:hive/src/backend/storage_backend.dart';
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/box/box_base_impl.dart';
-import 'package:hive/src/box/change_notifier.dart';
-import 'package:hive/src/box/keystore.dart';
-import 'package:hive/src/hive_impl.dart';
+import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/src/backend/storage_backend.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/box/box_base_impl.dart';
+import 'package:hive_plus/src/box/change_notifier.dart';
+import 'package:hive_plus/src/box/keystore.dart';
+import 'package:hive_plus/src/hive_impl.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

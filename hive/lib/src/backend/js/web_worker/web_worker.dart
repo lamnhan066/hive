@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:js_interop';
 
-import 'package:hive/src/backend/js/web_worker/web_worker_operation.dart';
+import 'package:hive_plus/src/backend/js/web_worker/web_worker_operation.dart';
 import 'package:web/web.dart';
 
 ///
@@ -12,7 +12,7 @@ import 'package:web/web.dart';
 /// 1. in your project, create a file `web/web_worker.dart`
 /// 2. add the following contents:
 /// ```dart
-/// import 'package:hive/hive.dart';
+/// import 'package:hive_plus/hive.dart';
 ///
 /// Future<void> main() => startWebWorker();
 /// ```

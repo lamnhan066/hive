@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:hive/hive.dart';
+import 'package:hive_plus/hive.dart';
 
 part 'main.g.dart';
 

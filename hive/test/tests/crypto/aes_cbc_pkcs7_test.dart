@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:hive/src/crypto/aes_cbc_pkcs7.dart';
-import 'package:hive/src/util/extensions.dart';
+import 'package:hive_plus/src/crypto/aes_cbc_pkcs7.dart';
+import 'package:hive_plus/src/util/extensions.dart';
 import 'package:pointycastle/export.dart';
 import 'package:test/test.dart';
 

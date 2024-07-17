@@ -1,5 +1,5 @@
-import 'package:hive/src/binary/frame.dart';
-import 'package:hive/src/box/keystore.dart';
+import 'package:hive_plus/src/binary/frame.dart';
+import 'package:hive_plus/src/box/keystore.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

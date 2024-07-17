@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_plus/hive.dart';
 import 'package:test/test.dart';
 
 import 'integration.dart';
