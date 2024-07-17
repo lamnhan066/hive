@@ -1,4 +1,4 @@
-part of '../hive_flutter_plus.dart';
+part of '../hive_plus_flutter.dart';
 
 /// Flutter extensions for Hive.
 extension HiveX on HiveInterface {

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
-import 'package:hive_flutter_plus/hive_flutter_plus.dart';
-import 'package:hive_flutter_plus/src/crypto/extensions.dart';
+import 'package:hive_plus_flutter/hive_plus_flutter.dart';
+import 'package:hive_plus_flutter/src/crypto/extensions.dart';
 
 /// Multi-threaded cipher. Uses AES256 GCM
 ///

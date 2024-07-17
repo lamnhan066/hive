@@ -1,4 +1,4 @@
-part of '../hive_flutter_plus.dart';
+part of '../hive_plus_flutter.dart';
 
 /// Signature for a function that builds a widget given a [Box].
 @Deprecated('Use [ValueListenableBuilder] and `box.listenable()` instead')

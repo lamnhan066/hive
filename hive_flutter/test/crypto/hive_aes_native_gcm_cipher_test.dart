@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:hive_flutter_plus/adapters.dart';
+import 'package:hive_plus_flutter/adapters.dart';
 import 'package:test/test.dart';
 
 import 'directory.dart';
