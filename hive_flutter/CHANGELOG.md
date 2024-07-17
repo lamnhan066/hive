@@ -1,3 +1,10 @@
+## 2.0.0-dev.1
+
+- Moved to `hive_plus`.
+- Bumped dart min sdk to `3.3.0`.
+- Use Flutter default lints.
+- Support WASM.
+
 ## 2.0.0-dev
 
 - Threaded AesCipher support
