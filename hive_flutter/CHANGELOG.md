@@ -1,3 +1,7 @@
+## 2.0.0-dev.2
+
+- Completely support WASM.
+
 ## 2.0.0-dev.1
 
 - Moved to `hive_plus`.
