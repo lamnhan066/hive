@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 
 abstract class BoxCollection {
   String get name;

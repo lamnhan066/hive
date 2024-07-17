@@ -1,4 +1,4 @@
-part of '../hive.dart';
+part of '../hive_plus.dart';
 
 /// The main API interface of Hive. Available through the `Hive` constant.
 abstract class HiveInterface implements TypeRegistry {

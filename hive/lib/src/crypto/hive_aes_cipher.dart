@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// Default encryption algorithm. Uses AES256 CBC with PKCS7 padding.
 class HiveAesCipher implements HiveCipher {

@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/binary/binary_reader_impl.dart';
 import 'package:hive_plus/src/box/keystore.dart';
 

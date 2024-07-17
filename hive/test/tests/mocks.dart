@@ -2,7 +2,7 @@ library hive.test.mocks;
 
 import 'dart:io';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/backend/storage_backend.dart';
 import 'package:hive_plus/src/box/change_notifier.dart';
 import 'package:hive_plus/src/box/keystore.dart';

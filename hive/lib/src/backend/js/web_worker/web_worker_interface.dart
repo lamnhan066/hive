@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'dart:math';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/backend/js/web_worker/web_worker_operation.dart';
 import 'package:web/web.dart';
 

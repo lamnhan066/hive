@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// Abstract cipher can be implemented to customize encryption.
 ///

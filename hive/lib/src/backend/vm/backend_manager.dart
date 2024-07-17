@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/backend/storage_backend.dart';
 import 'package:hive_plus/src/backend/vm/storage_backend_vm.dart';
 import 'package:hive_plus/src/hive_impl.dart';

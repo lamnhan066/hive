@@ -3,7 +3,7 @@ library;
 
 import 'dart:io';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/adapters/date_time_adapter.dart';
 import 'package:hive_plus/src/hive_impl.dart';
 import 'package:test/test.dart';

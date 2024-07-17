@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// Allows defining references to other [HiveObjectMixin]s.
 @experimental

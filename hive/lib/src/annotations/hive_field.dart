@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// Annotate all fields you want to persist with [HiveField].
 class HiveField {

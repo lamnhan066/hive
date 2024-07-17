@@ -1,6 +1,6 @@
 library hive_object_internal;
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/object/hive_list_impl.dart';
 import 'package:meta/meta.dart';
 

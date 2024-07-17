@@ -1,4 +1,4 @@
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/backend/storage_backend.dart';
 import 'package:hive_plus/src/backend/stub/backend_manager_memory.dart';
 

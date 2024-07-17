@@ -1,4 +1,4 @@
-part of '../hive.dart';
+part of '../hive_plus.dart';
 
 /// An error related to Hive.
 class HiveError extends Error {

@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// The [BinaryReader] is used to bring data back from the binary format on the
 /// disk.

@@ -5,7 +5,7 @@ import 'dart:async' show Future;
 import 'dart:js_interop';
 import 'dart:typed_data';
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/backend/js/native/storage_backend_js.dart';
 import 'package:hive_plus/src/backend/js/utils.dart';
 import 'package:hive_plus/src/binary/binary_writer_impl.dart';

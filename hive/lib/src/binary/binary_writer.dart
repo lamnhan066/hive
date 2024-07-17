@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// The [BinaryWriter] is used to encode data to the binary format.
 abstract class BinaryWriter {

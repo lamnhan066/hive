@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
-import 'package:hive_plus/hive.dart';
+import 'package:hive_plus/hive_plus.dart';
 import 'package:hive_plus/src/binary/frame.dart';
 import 'package:hive_plus/src/box/box_base_impl.dart';
 import 'package:hive_plus/src/object/hive_object.dart';

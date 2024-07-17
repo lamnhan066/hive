@@ -1,4 +1,4 @@
-part of '../../hive.dart';
+part of '../../hive_plus.dart';
 
 /// TypeRegistries contain the [TypeAdapter]s associated with a typeId.
 ///
