@@ -1,6 +1,6 @@
 name: hive_plus
 description: Lightweight and blazing fast key-value database written in pure Dart. Strongly encrypted using AES-256.
-version: 3.0.0-dev.2
+version: 3.0.0-dev.3
 homepage: https://github.com/lamnhan066/hive
 documentation: https://docs.hivedb.dev/
 

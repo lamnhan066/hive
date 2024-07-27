@@ -1,12 +1,18 @@
-# 3.0.0-dev.2
+## 3.0.0-dev.3
+
+* Update LICENSE.
+
+## 3.0.0-dev.2
 
 - Completely support WASM.
 
-# 3.0.0-dev.1
+## 3.0.0-dev.1
 
 - Support WASM.
 - Update dart min sdk to 3.3.0.
 - Use Flutter default lints.
+
+# Old Changelogs
 
 # 3.0.0-dev
 
