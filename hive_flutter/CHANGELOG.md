@@ -1,3 +1,7 @@
+## 2.0.0-dev.3
+
+- Update LICENSE.
+
 ## 2.0.0-dev.2
 
 - Completely support WASM.
